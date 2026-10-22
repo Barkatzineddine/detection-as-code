@@ -158,7 +158,9 @@ def main() -> int:
         )
         response = request(f"{args.url}/_bulk?refresh=true", "POST", bulk, ndjson=True)
         if response.get("errors"):
-            raise SystemExit(f"bulk indexing failed: {json.dumps(response)[:2000]}")
+            failed = [i["index"] for i in response["items"] if "error" in i["index"]]
+            reasons = {json.dumps(i["error"])[:400] for i in failed}
+            raise SystemExit(f"{len(failed)} documents rejected:\n" + "\n".join(reasons))
         results[case_sensitive] = check(args.url, queries, samples)
 
     version = request(args.url)["version"]["number"]

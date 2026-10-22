@@ -9,6 +9,7 @@ authors = [{ name = "Mohamed Zineddine Barkat" }]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
 addopts = "-ra --strict-markers"
 
 [tool.ruff]
