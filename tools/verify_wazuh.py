@@ -96,9 +96,12 @@ def create_index(url: str, case_sensitive: bool) -> None:
             "analysis": {"normalizer": {"lc": {"type": "custom", "filter": ["lowercase"]}}},
         },
         "mappings": {
+            # Wazuh's template stores event fields as keywords; never guess dates or numbers.
+            "date_detection": False,
+            "numeric_detection": False,
             "dynamic_templates": [
                 {"strings": {"match_mapping_type": "string", "mapping": keyword}},
-            ]
+            ],
         },
     }
     with contextlib.suppress(urllib.error.HTTPError):  # first run: nothing to delete
