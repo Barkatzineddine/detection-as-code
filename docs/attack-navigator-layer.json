@@ -1,0 +1,421 @@
+{
+  "name": "detection-as-code coverage",
+  "versions": {
+    "attack": "20",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "20 Sigma rules from github.com/Barkatzineddine/detection-as-code, each tested against a recorded attack. Score = number of rules.",
+  "sorting": 3,
+  "layout": {
+    "layout": "side",
+    "showID": true,
+    "showName": true
+  },
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1003.001",
+      "score": 2,
+      "comment": "Suspicious Process Access to LSASS Memory; LSASS Dump via comsvcs.dll MiniDump",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Suspicious Process Access to LSASS Memory"
+        },
+        {
+          "name": "rule",
+          "value": "LSASS Dump via comsvcs.dll MiniDump"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1003.002",
+      "score": 1,
+      "comment": "SAM, SYSTEM or SECURITY Hive Saved With reg.exe",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "SAM, SYSTEM or SECURITY Hive Saved With reg.exe"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1003.003",
+      "score": 1,
+      "comment": "Active Directory Database Copied With ntdsutil IFM",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Active Directory Database Copied With ntdsutil IFM"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1003.004",
+      "score": 1,
+      "comment": "SAM, SYSTEM or SECURITY Hive Saved With reg.exe",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "SAM, SYSTEM or SECURITY Hive Saved With reg.exe"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1003.006",
+      "score": 1,
+      "comment": "Directory Replication Requested by a Non-Machine Account (DCSync)",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Directory Replication Requested by a Non-Machine Account (DCSync)"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1021.002",
+      "score": 1,
+      "comment": "Service Installed With a Shell or Script Command as Its Binary",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Service Installed With a Shell or Script Command as Its Binary"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1027.010",
+      "score": 1,
+      "comment": "PowerShell Started With an Encoded Command",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "PowerShell Started With an Encoded Command"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1053.005",
+      "score": 1,
+      "comment": "Scheduled Task Created With a Suspicious Action or SYSTEM Context",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Scheduled Task Created With a Suspicious Action or SYSTEM Context"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "comment": "PowerShell Started With an Encoded Command",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "PowerShell Started With an Encoded Command"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1087",
+      "score": 1,
+      "comment": "SSH Logins Tried for Many User Names From a Single Source",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "SSH Logins Tried for Many User Names From a Single Source"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "comment": "File Transfer Started With bitsadmin",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "File Transfer Started With bitsadmin"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1110.001",
+      "score": 1,
+      "comment": "SSH Password Brute Force From a Single Source",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "SSH Password Brute Force From a Single Source"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1110.003",
+      "score": 1,
+      "comment": "SSH Logins Tried for Many User Names From a Single Source",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "SSH Logins Tried for Many User Names From a Single Source"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1197",
+      "score": 1,
+      "comment": "File Transfer Started With bitsadmin",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "File Transfer Started With bitsadmin"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1218.005",
+      "score": 1,
+      "comment": "Mshta Executing Inline Script or a Remote HTA",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Mshta Executing Inline Script or a Remote HTA"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1218.010",
+      "score": 1,
+      "comment": "Regsvr32 Loading a Scriptlet (Squiblydoo)",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Regsvr32 Loading a Scriptlet (Squiblydoo)"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1218.011",
+      "score": 1,
+      "comment": "LSASS Dump via comsvcs.dll MiniDump",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "LSASS Dump via comsvcs.dll MiniDump"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1543.003",
+      "score": 1,
+      "comment": "Service Installed With a Shell or Script Command as Its Binary",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Service Installed With a Shell or Script Command as Its Binary"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1546.003",
+      "score": 1,
+      "comment": "WMI Event Consumer Running a Command or Script",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "WMI Event Consumer Running a Command or Script"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1547.001",
+      "score": 1,
+      "comment": "Run Key Value Launching a Script Interpreter or Payload",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Run Key Value Launching a Script Interpreter or Payload"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1548.002",
+      "score": 1,
+      "comment": "UAC Bypass Through the ms-settings Protocol Handler",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "UAC Bypass Through the ms-settings Protocol Handler"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1569.002",
+      "score": 1,
+      "comment": "Service Installed With a Shell or Script Command as Its Binary",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Service Installed With a Shell or Script Command as Its Binary"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1685.001",
+      "score": 2,
+      "comment": "Audit Policy Disabled or Cleared With auditpol; Windows Event Log Service Disabled in the Registry",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Audit Policy Disabled or Cleared With auditpol"
+        },
+        {
+          "name": "rule",
+          "value": "Windows Event Log Service Disabled in the Registry"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1685.005",
+      "score": 1,
+      "comment": "Security Event Log Cleared",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Security Event Log Cleared"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1686.003",
+      "score": 1,
+      "comment": "Firewall Rule Allowing Inbound Traffic Added With netsh",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "rule",
+          "value": "Firewall Rule Allowing Inbound Traffic Added With netsh"
+        }
+      ],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1003",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1021",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1027",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1053",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1059",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1110",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1218",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1543",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1546",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1547",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1548",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1569",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1685",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "T1686",
+      "showSubtechniques": true
+    }
+  ],
+  "gradient": {
+    "colors": [
+      "#c6dbef",
+      "#08519c"
+    ],
+    "minValue": 0,
+    "maxValue": 3
+  },
+  "legendItems": [],
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#dddddd",
+  "selectTechniquesAcrossTactics": true,
+  "selectSubtechniquesWithParent": false
+}

@@ -1,0 +1,25 @@
+title: Windows Event Log Service Disabled in the Registry
+id: abde91bf-7b5b-4ada-a0ca-fc154f933bf6
+status: test
+description: |
+  Detects the start type of the EventLog service being set to 4 (disabled). After the next
+  reboot no event is written to any Windows log, which silently blinds the SIEM for that host.
+references:
+  - https://learn.microsoft.com/en-us/windows-hardware/drivers/install/hklm-system-currentcontrolset-services-registry-tree
+  - https://attack.mitre.org/techniques/T1685/001/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.defense-impairment
+  - attack.t1685.001
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection:
+    TargetObject|endswith: '\Services\EventLog\Start'
+    Details: 'DWORD (0x00000004)'
+  condition: selection
+falsepositives:
+  - None expected on managed hosts.
+level: high

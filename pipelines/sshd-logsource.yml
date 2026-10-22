@@ -1,0 +1,13 @@
+name: OpenSSH log source
+# Scopes rules with "logsource: {product: linux, service: sshd}" to events decoded from
+# the sshd process (see dac/sshd.py). Field names are mapped to Wazuh / ECS afterwards.
+priority: 10
+transformations:
+  - id: sshd_logsource_condition
+    type: add_condition
+    conditions:
+      process: sshd
+    rule_conditions:
+      - type: logsource
+        product: linux
+        service: sshd

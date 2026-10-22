@@ -1,0 +1,33 @@
+title: Mshta Executing Inline Script or a Remote HTA
+id: eb8bf1e2-3cfb-41a4-ac05-c18e85a6a705
+status: test
+description: |
+  Detects mshta.exe running VBScript or JavaScript passed directly on the command line, or
+  loading an HTA from a URL. mshta is a signed Microsoft binary, so attackers use it to run
+  script while bypassing application allow-listing.
+references:
+  - https://lolbas-project.github.io/lolbas/Binaries/Mshta/
+  - https://attack.mitre.org/techniques/T1218/005/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.stealth
+  - attack.t1218.005
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    - Image|endswith: '\mshta.exe'
+    - OriginalFileName: 'MSHTA.EXE'
+  selection_script:
+    CommandLine|contains:
+      - 'vbscript:'
+      - 'javascript:'
+      - 'about:'
+      - 'http://'
+      - 'https://'
+  condition: all of selection_*
+falsepositives:
+  - Legacy line-of-business HTML applications served from an intranet URL. List them by URL.
+level: high

@@ -1,0 +1,25 @@
+title: Security Event Log Cleared
+id: 094e46bc-2f29-4a4c-b51d-17a30cf0bcc1
+status: test
+description: |
+  Detects the clearing of the Security event log (event 1102). Clearing erases the evidence
+  of what happened before it; attackers do it after credential theft or lateral movement,
+  and ransomware operators do it before encryption.
+references:
+  - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1102
+  - https://attack.mitre.org/techniques/T1685/005/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.defense-impairment
+  - attack.t1685.005
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 1102
+  condition: selection
+falsepositives:
+  - Administrators clearing logs while troubleshooting, and lab or golden-image resets. The recorded attack samples here come from exactly that, a lab cleared before each run. In production this should be rare enough to confirm every time.
+level: high

@@ -1,0 +1,149 @@
+name: Detection pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Least privilege by default; no job needs more than read access.
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUTF8: "1"
+  # OpenSearch 2.19 is the engine of the Wazuh 4.x indexer. Pinned by digest.
+  OPENSEARCH_IMAGE: opensearchproject/opensearch:2.19.6@sha256:be67c71b8d0e5edf1e9825145501c0136c3b8221206e1ce782ce17b04d0280b5
+
+jobs:
+  lint:
+    name: Lint (sigma check, ruff)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install locked dependencies (hash-checked)
+        run: pip install --require-hashes --no-deps -r requirements.txt
+      - name: Validate Sigma rules (pySigma validators, fail on any issue)
+        run: sigma check --fail-on-issues rules
+      - name: Python lint
+        run: ruff check --output-format=github .
+      - name: Python formatting
+        run: ruff format --check .
+
+  test:
+    name: Detection tests (attack + benign samples)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install locked dependencies (hash-checked)
+        run: pip install --require-hashes --no-deps -r requirements.txt
+      - name: Run every rule against its recorded attack and every benign sample
+        run: pytest --junitxml=junit.xml
+      - name: Per-rule results
+        if: always()
+        run: python tools/report.py >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: test-results
+          path: junit.xml
+
+  provenance:
+    name: Sample provenance (rebuild from public datasets)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install locked dependencies (hash-checked)
+        run: pip install --require-hashes --no-deps -r requirements.txt
+      - name: Download pinned datasets, verify SHA-256, re-extract and compare
+        run: python tools/build_samples.py --check
+
+  convert:
+    name: Convert to Wazuh and Elastic, ATT&CK layer
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install locked dependencies (hash-checked)
+        run: pip install --require-hashes --no-deps -r requirements.txt
+      - name: Convert rules with pySigma backends
+        run: |
+          python tools/convert.py --out build/conversions
+          cat build/conversions/index.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Coverage table and Navigator layer are up to date
+        run: python tools/coverage.py --check
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: siem-queries
+          path: build/conversions
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: attack-navigator-layer
+          path: docs/attack-navigator-layer.json
+
+  wazuh-indexer:
+    name: Wazuh queries on a live OpenSearch
+    runs-on: ubuntu-24.04
+    needs: convert
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install locked dependencies (hash-checked)
+        run: pip install --require-hashes --no-deps -r requirements.txt
+      - name: Start OpenSearch (single node, local only)
+        run: |
+          docker run -d --name opensearch -p 127.0.0.1:9200:9200 \
+            -e discovery.type=single-node -e DISABLE_SECURITY_PLUGIN=true \
+            -e DISABLE_INSTALL_DEMO_CONFIG=true -e OPENSEARCH_JAVA_OPTS="-Xms512m -Xmx512m" \
+            "$OPENSEARCH_IMAGE"
+          for _ in $(seq 60); do
+            curl -fsS http://127.0.0.1:9200/_cluster/health?wait_for_status=yellow >/dev/null 2>&1 && break
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:9200
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: siem-queries
+          path: build/conversions
+      - name: Every attack event found, no benign event matched
+        run: python tools/verify_wazuh.py --url http://127.0.0.1:9200 --summary "$GITHUB_STEP_SUMMARY"
+      - name: OpenSearch logs on failure
+        if: failure()
+        run: docker logs opensearch | tail -100

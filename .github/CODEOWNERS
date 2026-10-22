@@ -1,0 +1,5 @@
+# Rules, samples and the pipeline need the owner's review.
+*              @Barkatzineddine
+/rules/        @Barkatzineddine
+/tests/data/   @Barkatzineddine
+/.github/      @Barkatzineddine

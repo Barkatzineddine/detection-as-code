@@ -1,0 +1,33 @@
+[
+  {
+    "@timestamp": "2020-10-22T02:57:59.857Z",
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "CommandLine": "mshta  vbscript:Execute(\"CreateObject(\"\"Wscript.Shell\"\").Run \"\"powershell -noexit -command Get-Service sysmon\"\":close\")",
+    "Company": "Microsoft Corporation",
+    "CurrentDirectory": "C:\\Users\\wardog\\",
+    "Description": "Microsoft (R) HTML Application host",
+    "EventID": 1,
+    "FileVersion": "11.00.18362.1 (WinBuild.160101.0800)",
+    "Hashes": "SHA1=99A0A1B05E60A5F1FC8A068F953F0510E0230EFA,MD5=7C5C45D9F45694521548E99BA5D4E535,SHA256=229EBBA62347B77EA2FFAD93308E7052BDAE39A24EA828D6EF93FE694CA62197,IMPHASH=42DA177DE2FAA97C3DFAEC9562772A7F",
+    "Hostname": "WORKSTATION5",
+    "Image": "C:\\Windows\\System32\\mshta.exe",
+    "IntegrityLevel": "High",
+    "Level": "4",
+    "LogonGuid": "{39e4a257-f1ac-5f8b-d961-0c0000000000}",
+    "LogonId": "0xc61d9",
+    "OriginalFileName": "MSHTA.EXE",
+    "ParentCommandLine": "\"C:\\windows\\system32\\cmd.exe\" ",
+    "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+    "ParentProcessGuid": "{39e4a257-2d59-5f91-6813-000000000700}",
+    "ParentProcessId": "5888",
+    "ProcessGuid": "{39e4a257-2d77-5f91-6b13-000000000700}",
+    "ProcessId": "10980",
+    "Product": "Internet Explorer",
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "TerminalSessionId": "2",
+    "TimeCreated": "2020-10-22T02:57:59.857Z",
+    "User": "WORKSTATION5\\wardog",
+    "UtcTime": "2020-10-22 06:57:59.855"
+  }
+]

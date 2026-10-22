@@ -1,0 +1,53 @@
+title: Suspicious Process Access to LSASS Memory
+id: b44f9dd0-9273-41c1-bb0d-53412da6f8b9
+status: test
+description: |
+  Detects a process opening lsass.exe with the access rights needed to read its memory
+  (PROCESS_VM_READ combined with query rights, or full access), or from code that does not
+  belong to any loaded module (UNKNOWN frame in the call trace, typical of reflectively loaded
+  tools such as Invoke-Mimikatz). Reading LSASS memory exposes NTLM hashes, Kerberos tickets
+  and, on older systems, clear-text passwords.
+references:
+  - https://learn.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights
+  - https://attack.mitre.org/techniques/T1003/001/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.credential-access
+  - attack.t1003.001
+logsource:
+  category: process_access
+  product: windows
+detection:
+  selection_target:
+    TargetImage|endswith: '\lsass.exe'
+  selection_access:
+    GrantedAccess:
+      - '0x1010'
+      - '0x1410'
+      - '0x1418'
+      - '0x1438'
+      - '0x143a'
+      - '0x1f0fff'
+      - '0x1f1fff'
+      - '0x1f2fff'
+      - '0x1f3fff'
+      - '0x1fffff'
+  selection_unbacked_code:
+    CallTrace|contains: 'UNKNOWN('
+  filter_main_windows:
+    SourceImage:
+      - 'C:\Windows\System32\csrss.exe'
+      - 'C:\Windows\System32\lsass.exe'
+      - 'C:\Windows\System32\wininit.exe'
+      - 'C:\Windows\System32\wbem\WmiPrvSE.exe'
+  filter_optional_defender:
+    SourceImage|startswith:
+      - 'C:\ProgramData\Microsoft\Windows Defender\Platform\'
+      - 'C:\Program Files\Windows Defender\'
+    SourceImage|endswith: '\MsMpEng.exe'
+  condition: selection_target and (selection_access or selection_unbacked_code) and not 1 of filter_*
+falsepositives:
+  - EDR, antivirus and backup agents that scan LSASS. Add them to a filter by full path and verify the signer before doing so.
+  - Windows Error Reporting (WerFault.exe) when LSASS crashes.
+level: high

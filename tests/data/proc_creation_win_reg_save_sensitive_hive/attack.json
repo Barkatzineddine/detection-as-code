@@ -1,0 +1,32 @@
+[
+  {
+    "@timestamp": "2020-09-22T08:28:41.547Z",
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "CommandLine": "\"C:\\windows\\system32\\reg.exe\" save HKLM\\sam sam",
+    "Company": "Microsoft Corporation",
+    "CurrentDirectory": "C:\\windows\\system32\\",
+    "Description": "Registry Console Tool",
+    "EventID": 1,
+    "EventType": "INFO",
+    "FileVersion": "10.0.18362.476 (WinBuild.160101.0800)",
+    "Hashes": "SHA1=EB3B03616EEE42F16D0703F64DE23E7E34FE8524,MD5=601BDDF7691C5AF626A5719F1D7E35F1,SHA256=4ED2A27860FA154415F65452FF1F94BD6AF762982E2F3470030C504DC3C8A354,IMPHASH=BE482BE427FE212CFEF2CDA0E61F19AC",
+    "Hostname": "WORKSTATION5.theshire.local",
+    "Image": "C:\\Windows\\System32\\reg.exe",
+    "IntegrityLevel": "High",
+    "LogonGuid": "{b34bc01c-22a7-5f69-dfa7-100000000000}",
+    "LogonId": "0x10a7df",
+    "OriginalFileName": "reg.exe",
+    "ParentCommandLine": "\"C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -noP -sta -w 1 -enc SQBGACgAJABQAFMAVgBlAFIAcwBJAE8AbgBUAEEAYgBsAGUA[...truncated]",
+    "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "ParentProcessGuid": "{b34bc01c-a92a-5f69-7e02-000000000900}",
+    "ParentProcessId": "5972",
+    "ProcessGuid": "{b34bc01c-b5b8-5f69-cc02-000000000900}",
+    "Product": "Microsoft® Windows® Operating System",
+    "RecordNumber": 3400681,
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "TerminalSessionId": "2",
+    "User": "THESHIRE\\pgustavo",
+    "UtcTime": "2020-09-22 08:28:40.319"
+  }
+]

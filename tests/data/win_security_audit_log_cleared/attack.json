@@ -1,0 +1,18 @@
+[
+  {
+    "@timestamp": "2020-10-23T02:36:40.671Z",
+    "Channel": "Security",
+    "EventID": 1102,
+    "Hostname": "WORKSTATION5",
+    "Level": "4",
+    "SourceName": "Microsoft-Windows-Eventlog",
+    "TimeCreated": "2020-10-23T02:36:40.671Z"
+  },
+  {
+    "Channel": "Security",
+    "EventID": 1102,
+    "Hostname": "WORKSTATION5",
+    "SourceName": "Microsoft-Windows-Eventlog",
+    "TimeCreated": "2020-10-18 07:49:39.776"
+  }
+]

@@ -1,0 +1,39 @@
+title: Firewall Rule Allowing Inbound Traffic Added With netsh
+id: fdebb46d-5289-4421-8f00-7d54a1b2e456
+status: test
+description: |
+  Detects netsh.exe adding a firewall rule that allows traffic, or opening a port or program
+  with the legacy "firewall add" syntax. Attackers open a port for a backdoor, for RDP or for
+  lateral movement tooling.
+references:
+  - https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/netsh-advfirewall-firewall-control-firewall-behavior
+  - https://attack.mitre.org/techniques/T1686/003/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.defense-impairment
+  - attack.t1686.003
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    - Image|endswith: '\netsh.exe'
+    - OriginalFileName: 'netsh.exe'
+  selection_rule:
+    - CommandLine|contains|all:
+        - 'firewall'
+        - ' add '
+        - 'allow'
+    - CommandLine|contains|all:
+        - 'firewall'
+        - ' add '
+        - 'portopening'
+    - CommandLine|contains|all:
+        - 'firewall'
+        - ' add '
+        - 'allowedprogram'
+  condition: all of selection_*
+falsepositives:
+  - Software installers that open their own port, and administrators. Prefer Group Policy for firewall changes so that netsh use stands out.
+level: medium

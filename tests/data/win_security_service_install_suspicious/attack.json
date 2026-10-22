@@ -1,0 +1,40 @@
+[
+  {
+    "@timestamp": "2020-09-20T16:16:58.214Z",
+    "ActivityID": "{9D5ADC19-303C-0001-A9AD-1D94DD8DD601}",
+    "Channel": "security",
+    "EventID": 4697,
+    "EventType": "AUDIT_SUCCESS",
+    "Hostname": "WORKSTATION6.theshire.local",
+    "RecordNumber": 717712,
+    "ServiceAccount": "LocalSystem",
+    "ServiceFileName": "%COMSPEC% /C start /b C:\\Windows\\System32\\WindowsPowershell\\v1.0\\powershell -noP -sta -w 1 -enc  SQBmACgAJABQAFMAVgBFAHIAUwBpAE8AbgBUAGEAYgBsAEUA[...truncated]",
+    "ServiceName": "Updater",
+    "ServiceStartType": "3",
+    "ServiceType": "0x10",
+    "SourceName": "Microsoft-Windows-Security-Auditing",
+    "SubjectDomainName": "THESHIRE",
+    "SubjectLogonId": "0x2990d17",
+    "SubjectUserName": "pgustavo",
+    "SubjectUserSid": "S-1-5-21-4228717743-1032521047-1810997296-1104"
+  },
+  {
+    "@timestamp": "2020-09-20T06:57:48.992Z",
+    "ActivityID": "{9D5ADC19-303C-0001-A9AD-1D94DD8DD601}",
+    "Channel": "security",
+    "EventID": 4697,
+    "EventType": "AUDIT_SUCCESS",
+    "Hostname": "WORKSTATION6.theshire.local",
+    "RecordNumber": 644952,
+    "ServiceAccount": "LocalSystem",
+    "ServiceFileName": "%COMSPEC% /C \"%COMSPEC% /C start /b C:\\Windows\\System32\\WindowsPowershell\\v1.0\\powershell -noP -sta -w 1 -enc  SQBGACgAJABQAFMAVgBFAFIAcwBpAG8ATgBUAGEAQgBMAEUA[...truncated]\"",
+    "ServiceName": "PGUJLOAKFQFVOMHGFQPX",
+    "ServiceStartType": "3",
+    "ServiceType": "0x10",
+    "SourceName": "Microsoft-Windows-Security-Auditing",
+    "SubjectDomainName": "THESHIRE",
+    "SubjectLogonId": "0x2074186",
+    "SubjectUserName": "pgustavo",
+    "SubjectUserSid": "S-1-5-21-4228717743-1032521047-1810997296-1104"
+  }
+]

@@ -1,0 +1,36 @@
+title: LSASS Dump via comsvcs.dll MiniDump
+id: 6273d176-0d62-4c48-bfd0-fa8c74bf07b3
+status: test
+description: |
+  Detects rundll32.exe calling the MiniDump export of comsvcs.dll (by name or by its ordinal
+  24). This built-in DLL writes a full memory dump of any process, and attackers use it to
+  dump LSASS without bringing their own tool.
+references:
+  - https://lolbas-project.github.io/lolbas/Libraries/comsvcs/
+  - https://attack.mitre.org/techniques/T1003/001/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.credential-access
+  - attack.t1003.001
+  - attack.stealth
+  - attack.t1218.011
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    - Image|endswith: '\rundll32.exe'
+    - OriginalFileName: 'RUNDLL32.EXE'
+  selection_dll:
+    CommandLine|contains: 'comsvcs'
+  selection_export:
+    CommandLine|contains:
+      - 'MiniDump'
+      - '#24'
+      - '#+24'
+      - '#-4294967272'
+  condition: all of selection_*
+falsepositives:
+  - None expected. Legitimate crash dumps are written by WerFault.exe or procdump, not by rundll32 calling comsvcs.dll.
+level: critical

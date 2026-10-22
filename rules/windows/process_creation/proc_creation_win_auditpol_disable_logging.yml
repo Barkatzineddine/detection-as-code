@@ -1,0 +1,31 @@
+title: Audit Policy Disabled or Cleared With auditpol
+id: 834e3be8-754a-4157-ab02-7f2a3f5c25c3
+status: test
+description: |
+  Detects auditpol.exe disabling success or failure auditing, clearing the audit policy or
+  removing per-user policy. Less noisy than clearing a log, it stops new security events
+  from being written, so the activity that follows is never recorded.
+references:
+  - https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol
+  - https://attack.mitre.org/techniques/T1685/001/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.defense-impairment
+  - attack.t1685.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    - Image|endswith: '\auditpol.exe'
+    - OriginalFileName: 'AUDITPOL.EXE'
+  selection_change:
+    CommandLine|windash|contains:
+      - ':disable'
+      - ' -clear'
+      - ' -remove'
+  condition: all of selection_*
+falsepositives:
+  - Audit policy is normally set by Group Policy. Local auditpol changes by an administrator during troubleshooting are possible but should be rare.
+level: high

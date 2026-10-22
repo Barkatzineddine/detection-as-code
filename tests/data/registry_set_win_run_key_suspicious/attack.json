@@ -1,0 +1,19 @@
+[
+  {
+    "@timestamp": "2020-09-04T07:06:22.490Z",
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "Details": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -c \"$x=$((gp HKCU:Software\\Microsoft\\Windows\\CurrentVersion Debug).Debug);powershell -Win Hidden -enc $x\"",
+    "EventID": 13,
+    "EventType": "SetValue",
+    "EventTypeOrignal": "INFO",
+    "Hostname": "WORKSTATION5.theshire.local",
+    "Image": "C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "ProcessGuid": "{3ddc5665-e699-5f51-4601-000000000400}",
+    "ProcessId": "5376",
+    "RecordNumber": 135785,
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "TargetObject": "HKU\\S-1-5-21-3125456671-949036322-3048627137-1104\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\Updater",
+    "UtcTime": "2020-09-04 07:06:21.311"
+  }
+]

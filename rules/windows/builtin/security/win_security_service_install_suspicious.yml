@@ -1,0 +1,48 @@
+title: Service Installed With a Shell or Script Command as Its Binary
+id: 3660a325-ca57-4839-a960-e72ded4e17f3
+status: test
+description: |
+  Detects a new service whose binary path is a command shell, PowerShell, a LOLBin, a file
+  in a user-writable folder or an admin share. Real services point to an executable. A
+  command line as the service binary is how PsExec-style tools (Impacket psexec/smbexec,
+  Empire, Metasploit) run code as SYSTEM, locally or on a remote host.
+references:
+  - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4697
+  - https://attack.mitre.org/techniques/T1543/003/
+  - https://attack.mitre.org/techniques/T1569/002/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1543.003
+  - attack.execution
+  - attack.t1569.002
+  - attack.lateral-movement
+  - attack.t1021.002
+logsource:
+  product: windows
+  service: security
+  definition: 'Requirements: "Audit Security System Extension" (event 4697). The System log event 7045 carries the same information in ImagePath.'
+detection:
+  selection_event:
+    EventID: 4697
+  selection_binary:
+    ServiceFileName|contains:
+      - '%COMSPEC%'
+      - 'cmd.exe /c'
+      - 'cmd /c'
+      - 'powershell'
+      - 'pwsh'
+      - 'mshta'
+      - 'rundll32'
+      - 'regsvr32'
+      - '\\127.0.0.1\'
+      - '\ADMIN$\'
+      - '\AppData\'
+      - '\Users\Public\'
+      - '\Windows\Temp\'
+  condition: all of selection_*
+falsepositives:
+  - A few legitimate drivers and agents install services from a temporary folder during setup. Check the installing account and whether a software deployment was scheduled.
+level: high

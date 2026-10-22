@@ -1,0 +1,19 @@
+[
+  {
+    "@timestamp": "2020-09-04T07:09:05.126Z",
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "Details": "\"%%ProgramFiles%%\\Windows Defender\\MSASCuiL.exe\"",
+    "EventID": 13,
+    "EventType": "SetValue",
+    "EventTypeOrignal": "INFO",
+    "Hostname": "WORKSTATION5.theshire.local",
+    "Image": "C:\\Program Files\\Windows Defender\\MsMpEng.exe",
+    "ProcessGuid": "{3ddc5665-e7d0-5f51-4f00-000000000500}",
+    "ProcessId": "3200",
+    "RecordNumber": 141818,
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "TargetObject": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\WindowsDefender",
+    "UtcTime": "2020-09-04 07:08:01.140"
+  }
+]

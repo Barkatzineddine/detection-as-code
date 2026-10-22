@@ -1,0 +1,30 @@
+title: Active Directory Database Copied With ntdsutil IFM
+id: 120317d5-a590-4058-8853-9470ea204481
+status: test
+description: |
+  Detects ntdsutil.exe creating an "Install From Media" (IFM) set. IFM copies ntds.dit and
+  the SYSTEM hive to a folder, which is everything needed to extract the password hash of
+  every account in the domain, including krbtgt.
+references:
+  - https://learn.microsoft.com/en-us/troubleshoot/windows-server/active-directory/use-ntdsutil-manage-ad-files
+  - https://attack.mitre.org/techniques/T1003/003/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.credential-access
+  - attack.t1003.003
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    - Image|endswith: '\ntdsutil.exe'
+    - OriginalFileName: 'ntdsutil.exe'
+  selection_ifm:
+    CommandLine|contains|all:
+      - 'ifm'
+      - 'create'
+  condition: all of selection_*
+falsepositives:
+  - Promoting a new domain controller from media. This is a planned, ticketed operation; confirm it with the AD team.
+level: high

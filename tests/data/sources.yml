@@ -1,0 +1,367 @@
+# Provenance of every test sample. tools/build_samples.py rebuilds tests/data/ from this
+# file and CI verifies that the committed samples match (job "Sample provenance").
+#
+# Windows: OTRF Security-Datasets (MIT licence), pinned to commit d9d40ef. Lab hosts from
+# the "theshire.local" / "pandalab" environments recorded with Sysmon and Windows auditing.
+# Linux: loghub OpenSSH_2k.log, a real SSH server exposed to the Internet (see NOTICE).
+#
+# Selector syntax: "Field: value", "Field|contains", "|startswith", "|endswith", "|re";
+# a list means "any of"; "not:" excludes. "distinct" removes duplicates on the listed
+# fields, "limit" caps the number of events.
+
+sources:
+  auditpol_modification:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/defense_evasion/host/auditpol_system_user_auditpolicy_modification.zip
+    sha256: 5eb1776e7e9f79060a87ed9efcce0eebbab7940f8f51db8b2d67368c64e2187d
+    format: otrf
+  bitsadmin_download:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/defense_evasion/host/cmd_bitsadmin_download_psh_script.zip
+    sha256: 8fb7bc9f3d82f672dc39a55e50006137aa540c4a9860acdcc5d08a4fd609b594
+    format: otrf
+  eventlog_service_disabled:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/defense_evasion/host/cmd_disable_eventlog_service_startuptype_modification_via_registry.zip
+    sha256: 4312946d5bb0883e691da3b1130d4179b951a413278b450a75c05d56a2858a1a
+    format: otrf
+  ntdsutil_ifm:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/credential_access/host/cmd_dumping_ntds_dit_file_ntdsutil.zip
+    sha256: 4633882ab1e9eadd156b29a89a5a6e24b680ead1b11ee259fdbe0d19ddbf77cf
+    format: otrf
+  mshta_vbscript:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/defense_evasion/host/cmd_mshta_vbscript_execute_psh.zip
+    sha256: f5f700bc986bbe73edcc209754b28a3e0ad38c56877f7fc5ed6fd04bc036d9f4
+    format: otrf
+  netsh_firewall:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/defense_evasion/host/cmd_netsh_fw_mod_open_ports.zip
+    sha256: 3d887b38c6a92892f950029f40114fe4598a798ad20453671dbe3d111b9ce4a2
+    format: otrf
+  dcsync:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/credential_access/host/empire_dcsync_dcerpc_drsuapi_DsGetNCChanges.zip
+    sha256: fe1fcc96c0ff0cbae8fd4ffaadf85f51e28475441774f6fda3d963d4e2962800
+    format: otrf
+  regsvr32_sct:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/defense_evasion/host/empire_launcher_sct_regsvr32.zip
+    sha256: abeb5c52c75286386e5eb999d7423d738a624191f4a95fb62694b471a10b2dab
+    format: otrf
+  launcher_vbs:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/execution/host/empire_launcher_vbs.zip
+    sha256: 812da270cf8cda6f1948fb6275410f15dc1794d0bd6b623c9c25b2518285019c
+    format: otrf
+  mimikatz_logonpasswords:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/credential_access/host/empire_mimikatz_logonpasswords.zip
+    sha256: bb4c057b62d781be5426e011872ba1a15070c07afbb24848a14458f4b22b06fb
+    format: otrf
+  run_keys:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/persistence/host/empire_persistence_registry_modification_run_keys_standard_user.zip
+    sha256: 2965f791bcaf5e6ccfc4059985e81fd7e67ec87f17855b6c383edd1b03a19c36
+    format: otrf
+  powerview_ldap:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/defense_evasion/host/empire_powerview_ldap_ntsecuritydescriptor.zip
+    sha256: 6db5eac7fdab1fd1868047615caf590cb13b64a878e203bf3f253c2527229587
+    format: otrf
+  psexec:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/lateral_movement/host/empire_psexec_dcerpc_tcp_svcctl.zip
+    sha256: 8f40e7fc86bbbf31ebd50b3ba537cf0f4378392ae3e74de84bee00aeb0de1fa5
+    format: otrf
+  schtasks_empire:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/persistence/host/empire_schtasks_creation_standard_user.zip
+    sha256: b073a18420c90394cd2b6ad7589c78d90eba32dc155ed04b12ac824a8fc591b4
+    format: otrf
+  reg_dump_sam:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/credential_access/host/empire_shell_reg_dump_sam.zip
+    sha256: 5a8ee19860f35da6d4bcadf15178a085b469086c461d3d873d0f4adedba41f0a
+    format: otrf
+  smbexec:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/lateral_movement/host/empire_smbexec_dcerpc_smb_svcctl.zip
+    sha256: c0fc435c9ce0ecdc7cd57b4055977b949ac6b1cae9d7f4ce7aa0f0e5eae7d7f1
+    format: otrf
+  fodhelper:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/privilege_escalation/host/empire_uac_shellapi_fodhelper.zip
+    sha256: b8cc7aae826f5e4aea3ea47b2b6db69b062c39201de8de9621d5081622d3c504
+    format: otrf
+  wmi_subscription:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/persistence/host/empire_wmi_local_event_subscriptions_elevated_user.zip
+    sha256: a507f2edd768b592e6b3157e974fd0468965eee00407387d88356ecb8fd20fea
+    format: otrf
+  comsvcs_minidump:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/credential_access/host/psh_lsass_memory_dump_comsvcs.zip
+    sha256: 0af9e920220d746432f0972be83ad057629695540aecd68c15869d190786e1ae
+    format: otrf
+  purplesharp:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/lateral_movement/host/purplesharp_ad_playbook_I.zip
+    sha256: 2a2d80e7b8d8ee6821a1754118f3ab908b4bac84cf4ed3d018e281f631bd2870
+    format: otrf
+  schtask_remote:
+    url: https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/datasets/atomic/windows/lateral_movement/host/schtask_create.zip
+    sha256: 74394c64b660d5b229936d00ea8b3ceb900126cd9e261f58fa2be766579ec5de
+    format: otrf
+  loghub_openssh:
+    url: https://raw.githubusercontent.com/logpai/loghub/dd61d0952749ee7963bde24220d1be5ede023033/OpenSSH/OpenSSH_2k.log
+    sha256: 1e4912727fa88245113d41b16a0cd25ceadba7f931e1c406542885b91254264f
+    format: syslog
+    # RFC 3164 lines carry no year; any fixed year keeps the correlation windows correct.
+    syslog_year: 2017
+
+# Shortcuts reused below.
+x-sysmon-proc: &proc {Channel: Microsoft-Windows-Sysmon/Operational, EventID: 1}
+
+samples:
+  # Real background activity recorded on the same lab hosts: Windows services, the Azure
+  # guest agent and its extensions, search indexing, monitoring agents. Every rule is run
+  # against it and must stay silent.
+  _baseline:
+    benign:
+      - source: wmi_subscription
+        where:
+          <<: *proc
+          ParentImage|re: '\\(waappagent|windowsazureguestagent|networkwatcheragent|customscripthandler|svchost|searchindexer|compattelrunner)\.exe$'
+        distinct: [Image, ParentImage]
+        limit: 25
+      - source: run_keys
+        where:
+          <<: *proc
+          ParentImage|re: '\\(waappagent|windowsazureguestagent|networkwatcheragent|svchost)\.exe$'
+        distinct: [Image, ParentImage]
+        limit: 15
+      - source: schtask_remote
+        where: {<<: *proc, ParentImage|endswith: [\MonitoringHost.exe, \SearchIndexer.exe, \Wireshark.exe]}
+        distinct: [Image]
+      - source: run_keys
+        where:
+          Channel: Microsoft-Windows-Sysmon/Operational
+          EventID: 13
+          not: {TargetObject|contains: \CurrentVersion\Run}
+        distinct: [Image]
+        limit: 20
+      - source: ntdsutil_ifm
+        where: {Channel: Microsoft-Windows-Sysmon/Operational, EventID: 10}
+        distinct: [SourceImage, TargetImage]
+        limit: 15
+      - source: run_keys
+        where: {Channel: security, EventID: [4688, 4697, 4703, 4673]}
+        distinct: [EventID, NewProcessName, ServiceName, ProcessName]
+        limit: 20
+
+  proc_creation_win_powershell_encoded_cmd:
+    attack:
+      - source: launcher_vbs
+        where: {<<: *proc, Image|endswith: \powershell.exe}
+      - source: smbexec
+        where: {<<: *proc, Image|endswith: \powershell.exe}
+      - source: fodhelper
+        where: {<<: *proc, Image|endswith: \powershell.exe}
+    benign:
+      # PowerShell remoting session host (no argument) and Azure agent tools whose
+      # arguments start like the -e / -en abbreviations.
+      - source: purplesharp
+        where: {<<: *proc, Image|endswith: \powershell.exe}
+        limit: 1
+      - source: wmi_subscription
+        where: {<<: *proc, Image|endswith: \AntimalwareConfig.exe}
+      - source: run_keys
+        where: {<<: *proc, Image|endswith: \ClipRenew.exe}
+        limit: 1
+
+  proc_access_win_lsass_suspicious_access:
+    attack:
+      - source: mimikatz_logonpasswords
+        where:
+          Channel: Microsoft-Windows-Sysmon/Operational
+          EventID: 10
+          TargetImage|endswith: \lsass.exe
+          SourceImage|endswith: \powershell.exe
+    benign:
+      # Routine access to LSASS by the system: svchost (LSM, SysMain) and VirtualBox tools.
+      - source: mimikatz_logonpasswords
+        where: {EventID: 10, TargetImage|endswith: \lsass.exe, SourceImage|endswith: \svchost.exe}
+        distinct: [GrantedAccess]
+      - source: dcsync
+        where: {EventID: 10, TargetImage|endswith: \lsass.exe}
+        distinct: [GrantedAccess]
+      - source: ntdsutil_ifm
+        where: {EventID: 10, TargetImage|endswith: \lsass.exe, SourceImage|endswith: \VBoxService.exe}
+        limit: 1
+
+  proc_creation_win_rundll32_comsvcs_minidump:
+    attack:
+      - source: comsvcs_minidump
+        where: {<<: *proc, Image|endswith: \rundll32.exe}
+    benign:
+      - source: ntdsutil_ifm
+        where: {<<: *proc, Image|endswith: \rundll32.exe}
+
+  proc_creation_win_reg_save_sensitive_hive:
+    attack:
+      - source: reg_dump_sam
+        where: {<<: *proc, Image|endswith: \reg.exe}
+    benign:
+      # Service and event-log administration by the Azure guest agent.
+      - source: wmi_subscription
+        where: {<<: *proc, Image|endswith: [\sc.exe, \wevtutil.exe]}
+        distinct: [CommandLine]
+        limit: 3
+
+  proc_creation_win_ntdsutil_ifm_dump:
+    attack:
+      - source: ntdsutil_ifm
+        where: {<<: *proc, Image|endswith: \ntdsutil.exe}
+    benign:
+      # Volume Shadow Copy service activity on the same domain controller.
+      - source: ntdsutil_ifm
+        where: {<<: *proc, Image|endswith: [\VSSVC.exe, \svchost.exe]}
+        distinct: [Image]
+
+  win_security_dcsync_replication_request:
+    attack:
+      - source: dcsync
+        where: {EventID: 4662, Properties|contains: 1131f6a}
+    benign:
+      # Same event ID: an LDAP read of the domain object's security descriptor (no
+      # replication right) and a local service touching a non-directory object.
+      - source: powerview_ldap
+        where: {EventID: 4662}
+        limit: 1
+      - source: run_keys
+        where: {EventID: 4662}
+        limit: 1
+
+  proc_creation_win_schtasks_create_suspicious:
+    attack:
+      - source: schtask_remote
+        where: {<<: *proc, Image|endswith: \schtasks.exe}
+      - source: schtasks_empire
+        where: {<<: *proc, Image|endswith: \schtasks.exe}
+    benign:
+      # Script and command hosts started by monitoring and Azure agents.
+      - source: schtask_remote
+        where: {<<: *proc, Image|endswith: \cscript.exe}
+        limit: 1
+      - source: wmi_subscription
+        where: {<<: *proc, Image|endswith: \cmd.exe, ParentImage|endswith: \WindowsAzureGuestAgent.exe}
+        limit: 2
+
+  registry_set_win_run_key_suspicious:
+    attack:
+      - source: run_keys
+        where: {EventID: 13, TargetObject|contains: \CurrentVersion\Run\, Image|endswith: \powershell.exe}
+    benign:
+      # Windows Defender registering its tray icon under HKLM\...\Run.
+      - source: run_keys
+        where: {EventID: 13, TargetObject|contains: \CurrentVersion\Run\, Image|endswith: \MsMpEng.exe}
+
+  win_security_service_install_suspicious:
+    attack:
+      - source: psexec
+        where: {EventID: 4697}
+      - source: smbexec
+        where: {EventID: 4697}
+    benign:
+      # Per-user services Windows installs at every logon.
+      - source: run_keys
+        where: {EventID: 4697}
+        distinct: [ServiceName]
+        limit: 8
+
+  win_security_audit_log_cleared:
+    attack:
+      - source: bitsadmin_download
+        where: {EventID: 1102}
+      - source: comsvcs_minidump
+        where: {EventID: 1102}
+    benign:
+      - source: bitsadmin_download
+        where: {Channel: Security, EventID: [4688, 4689, 4703, 4799]}
+        distinct: [EventID]
+
+  registry_set_win_eventlog_service_disabled:
+    attack:
+      - source: eventlog_service_disabled
+        where: {EventID: 13, TargetObject|endswith: \Services\EventLog\Start}
+    benign:
+      # ETW autologger sessions for the event log, toggled by the system.
+      - source: eventlog_service_disabled
+        where: {EventID: 13, TargetObject|contains: \Autologger\EventLog-}
+        limit: 4
+
+  proc_creation_win_mshta_inline_script:
+    attack:
+      - source: mshta_vbscript
+        where: {<<: *proc, Image|endswith: \mshta.exe}
+    benign:
+      - source: schtask_remote
+        where: {<<: *proc, Image|endswith: \cscript.exe}
+        limit: 1
+
+  proc_creation_win_regsvr32_remote_scriptlet:
+    attack:
+      - source: regsvr32_sct
+        where: {<<: *proc, Image|endswith: \regsvr32.exe}
+    benign:
+      - source: ntdsutil_ifm
+        where: {<<: *proc, Image|endswith: \rundll32.exe}
+
+  registry_set_win_uac_bypass_ms_settings:
+    attack:
+      - source: fodhelper
+        where: {EventID: 13, TargetObject|contains: \ms-settings\Shell\Open\command}
+    benign:
+      # fodhelper.exe itself records that the ms-settings protocol was used.
+      - source: fodhelper
+        where: {EventID: 13, TargetObject|contains: ApplicationAssociationToasts}
+
+  wmi_event_win_commandline_consumer:
+    attack:
+      - source: wmi_subscription
+        where: {Channel: Microsoft-Windows-Sysmon/Operational, EventID: 20, Type: Command Line}
+    benign:
+      - source: wmi_subscription
+        where: {<<: *proc, Image|endswith: \WmiPrvSE.exe}
+        limit: 1
+
+  proc_creation_win_netsh_firewall_allow_inbound:
+    attack:
+      - source: netsh_firewall
+        where: {<<: *proc, Image|endswith: \netsh.exe, CommandLine|contains: ' add rule '}
+    benign:
+      # Network Watcher packet captures, and the removal of a firewall rule.
+      - source: run_keys
+        where: {<<: *proc, Image|endswith: \netsh.exe}
+        distinct: [CommandLine]
+        limit: 2
+      - source: netsh_firewall
+        where: {<<: *proc, Image|endswith: \netsh.exe, CommandLine|contains: ' delete rule '}
+
+  proc_creation_win_auditpol_disable_logging:
+    attack:
+      - source: auditpol_modification
+        where: {<<: *proc, Image|endswith: \auditpol.exe}
+    benign:
+      # Event-log manifest (un)registration by the Azure guest agent.
+      - source: wmi_subscription
+        where: {<<: *proc, Image|endswith: \wevtutil.exe}
+        distinct: [CommandLine]
+        limit: 2
+
+  proc_creation_win_bitsadmin_download:
+    attack:
+      - source: bitsadmin_download
+        where: {<<: *proc, Image|endswith: \bitsadmin.exe}
+    benign:
+      - source: bitsadmin_download
+        where: {<<: *proc, Image|endswith: \svchost.exe}
+
+  lnx_sshd_password_bruteforce:
+    attack:
+      - source: loghub_openssh
+        where: {src_ip: 5.188.10.180}
+    benign:
+      # The one successful interactive login, and sources with only a couple of failures.
+      - source: loghub_openssh
+        where: {src_ip: [119.137.62.142, 173.234.31.186, 106.5.5.195, 202.100.179.208]}
+
+  lnx_sshd_invalid_user_enumeration:
+    attack:
+      - source: loghub_openssh
+        where: {src_ip: 103.99.0.122}
+    benign:
+      - source: loghub_openssh
+        where: {src_ip: [119.137.62.142, 173.234.31.186, 106.5.5.195, 202.100.179.208]}

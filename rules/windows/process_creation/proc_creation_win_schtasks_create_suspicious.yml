@@ -1,0 +1,51 @@
+title: Scheduled Task Created With a Suspicious Action or SYSTEM Context
+id: a8c192bd-d8ef-4d93-bcb1-1a5eb412c36d
+status: test
+description: |
+  Detects schtasks.exe creating a task whose action starts a script interpreter or LOLBin,
+  points to a user-writable folder, decodes Base64, or that runs as SYSTEM. Scheduled tasks
+  are used for persistence, for privilege escalation, and with /S for remote execution.
+references:
+  - https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks-create
+  - https://attack.mitre.org/techniques/T1053/005/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.execution
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1053.005
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    - Image|endswith: '\schtasks.exe'
+    - OriginalFileName: 'schtasks.exe'
+  selection_create:
+    CommandLine|windash|contains: ' -create '
+  selection_suspicious:
+    - CommandLine|contains:
+        - 'powershell'
+        - 'pwsh'
+        - 'cmd.exe /c'
+        - 'cmd /c'
+        - 'mshta'
+        - 'rundll32'
+        - 'regsvr32'
+        - 'wscript'
+        - 'cscript'
+        - 'certutil'
+        - 'bitsadmin'
+        - 'FromBase64String'
+        - '\AppData\'
+        - '\Users\Public\'
+        - '\Temp\'
+    - CommandLine|windash|contains:
+        - ' -ru system'
+        - ' -ru "system"'
+        - ' -ru "nt authority\system"'
+  condition: all of selection_*
+falsepositives:
+  - Software installers and IT scripts that register maintenance tasks running PowerShell or as SYSTEM. Expect a handful per week; baseline by task name and parent process.
+level: medium

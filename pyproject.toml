@@ -1,0 +1,24 @@
+[project]
+name = "detection-as-code"
+version = "1.0.0"
+description = "Sigma detection rules tested against recorded attacks, converted for Wazuh and Elastic"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+authors = [{ name = "Mohamed Zineddine Barkat" }]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [".cache", "build"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "SIM", "RUF"]
+ignore = ["S101"] # assert is how pytest checks
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E501"]

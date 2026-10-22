@@ -1,0 +1,39 @@
+title: Directory Replication Requested by a Non-Machine Account (DCSync)
+id: 858aeebf-108a-45f6-97c6-7e99ba5490d5
+status: test
+description: |
+  Detects an account that is not a computer account using the "Replicating Directory Changes"
+  extended rights on the domain object. Domain controllers replicate with their machine
+  account; a user account doing it is the signature of DCSync (Mimikatz lsadump::dcsync,
+  Impacket secretsdump), which pulls password hashes from a DC over the network.
+references:
+  - https://learn.microsoft.com/en-us/windows/win32/adschema/r-ds-replication-get-changes-all
+  - https://attack.mitre.org/techniques/T1003/006/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.credential-access
+  - attack.t1003.006
+logsource:
+  product: windows
+  service: security
+  definition: 'Requirements: "Audit Directory Service Access" on domain controllers and an auditing entry (SACL) for the replication rights on the domain object'
+detection:
+  selection:
+    EventID: 4662
+    AccessMask: '0x100'
+    Properties|contains:
+      - '1131f6aa-9c07-11d1-f79f-00c04fc2dcd2' # DS-Replication-Get-Changes
+      - '1131f6ad-9c07-11d1-f79f-00c04fc2dcd2' # DS-Replication-Get-Changes-All
+      - '89e95b76-444d-4c62-991a-0facbeda640c' # DS-Replication-Get-Changes-In-Filtered-Set
+  filter_main_machine_account:
+    SubjectUserName|endswith: '$'
+  filter_optional_entra_connect:
+    SubjectUserName|startswith:
+      - 'MSOL_'
+      - 'AAD_'
+  condition: selection and not 1 of filter_*
+falsepositives:
+  - Microsoft Entra Connect (formerly Azure AD Connect) synchronisation accounts, filtered above by their default name prefix. Rename the filter if your sync account uses another name.
+  - Identity tools that read password hashes for auditing (e.g. password quality scanners).
+level: high

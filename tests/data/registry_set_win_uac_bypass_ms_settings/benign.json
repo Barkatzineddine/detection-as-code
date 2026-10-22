@@ -1,0 +1,19 @@
+[
+  {
+    "@timestamp": "2020-09-04T07:30:16.197Z",
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "Details": "DWORD (0x00000000)",
+    "EventID": 13,
+    "EventType": "SetValue",
+    "EventTypeOrignal": "INFO",
+    "Hostname": "WORKSTATION5.theshire.local",
+    "Image": "C:\\windows\\system32\\fodhelper.exe",
+    "ProcessGuid": "{3ddc5665-ed05-5f51-f002-000000000500}",
+    "ProcessId": "7020",
+    "RecordNumber": 310237,
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "TargetObject": "HKU\\S-1-5-21-3125456671-949036322-3048627137-1104\\Software\\Microsoft\\Windows\\CurrentVersion\\ApplicationAssociationToasts\\ms-settings_ms-settings",
+    "UtcTime": "2020-09-04 07:30:14.043"
+  }
+]

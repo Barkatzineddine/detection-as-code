@@ -1,0 +1,53 @@
+title: SSH Login Attempt for a Non-Existent User
+id: f74f83ca-a2ab-4ab0-a112-cfc1bbd65c40
+name: sshd_invalid_user
+status: test
+description: sshd rejected a login for a user name that does not exist on the host. Building block of the correlation below; it does not alert on its own.
+references:
+  - https://man.openbsd.org/sshd.8
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.credential-access
+  - attack.t1110.003
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection:
+    message|contains: 'Invalid user '
+  condition: selection
+falsepositives:
+  - A user typing the wrong login name.
+level: informational
+---
+title: SSH Logins Tried for Many User Names From a Single Source
+id: d141f150-bbe9-42e6-a607-f49f4dcaff22
+status: test
+description: |
+  Detects one source address trying five or more different non-existent user names within
+  ten minutes. Cycling through a list of common accounts (admin, oracle, git, test...) is
+  password spraying and account discovery, and it often precedes a targeted brute force
+  once a valid name is found.
+references:
+  - https://attack.mitre.org/techniques/T1110/003/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.credential-access
+  - attack.t1110.003
+  - attack.discovery
+  - attack.t1087
+correlation:
+  type: value_count
+  rules:
+    - sshd_invalid_user
+  group-by:
+    - src_ip
+  timespan: 10m
+  condition:
+    field: user
+    gte: 5
+falsepositives:
+  - Vulnerability scanners run from an internal address. Exclude their documented addresses.
+level: medium

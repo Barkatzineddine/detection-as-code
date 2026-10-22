@@ -1,0 +1,31 @@
+[
+  {
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "CommandLine": "\"C:\\Windows\\System32\\rundll32.exe\" C:\\windows\\System32\\comsvcs.dll MiniDump 756 C:\\Users\\wardog\\AppData\\Local\\Temp\\lsass-comsvcs.dmp full",
+    "Company": "Microsoft Corporation",
+    "CurrentDirectory": "C:\\Users\\wardog\\",
+    "Description": "Windows host process (Rundll32)",
+    "EventID": 1,
+    "FileVersion": "10.0.18362.1 (WinBuild.160101.0800)",
+    "Hashes": "SHA1=7662A8D2F23C3474DEC6EF8E2B0365B0B86714EE,MD5=F68AF942FD7CCC0E7BAB1A2335D2AD26,SHA256=11064E9EDC605BD5B0C0A505538A0D5FD7DE53883AF342F091687CAE8628ACD0,IMPHASH=F27A7FC3A53E74F45BE370131953896A",
+    "Hostname": "WORKSTATION5",
+    "Image": "C:\\Windows\\System32\\rundll32.exe",
+    "IntegrityLevel": "High",
+    "LogonGuid": "{39e4a257-f1ac-5f8b-d961-0c0000000000}",
+    "LogonId": "0xc61d9",
+    "OriginalFileName": "RUNDLL32.EXE",
+    "ParentCommandLine": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe ",
+    "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "ParentProcessGuid": "{39e4a257-d445-5f8c-2c03-000000000700}",
+    "ParentProcessId": "6100",
+    "ProcessGuid": "{39e4a257-d4ad-5f8c-3303-000000000700}",
+    "ProcessId": "4824",
+    "Product": "Microsoft® Windows® Operating System",
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "TerminalSessionId": "2",
+    "TimeCreated": "2020-10-18 07:50:05.917",
+    "User": "WORKSTATION5\\wardog",
+    "UtcTime": "2020-10-18 23:50:05.910"
+  }
+]

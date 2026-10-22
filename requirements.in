@@ -1,0 +1,13 @@
+# Direct dependencies. requirements.txt is the hash-locked resolution used by CI:
+#   uv pip compile requirements.in --universal --python-version 3.12 --generate-hashes \
+#     --exclude-newer <7 days ago> -o requirements.txt
+pySigma
+pySigma-backend-sqlite
+pySigma-backend-elasticsearch
+pySigma-backend-opensearch
+pySigma-pipeline-sysmon
+pySigma-pipeline-windows
+sigma-cli
+PyYAML
+pytest
+ruff

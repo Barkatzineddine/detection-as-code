@@ -1,0 +1,20 @@
+[
+  {
+    "@timestamp": "2022-08-04T08:21:16.163Z",
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "Details": "DWORD (0x00000004)",
+    "EventID": 13,
+    "EventType": "SetValue",
+    "Hostname": "Pedro01",
+    "Image": "C:\\Windows\\system32\\reg.exe",
+    "Level": "4",
+    "ProcessGuid": "{625b42a0-e3e3-62eb-4807-000000000900}",
+    "ProcessId": "2652",
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "TargetObject": "HKLM\\System\\CurrentControlSet\\Services\\EventLog\\Start",
+    "TimeCreated": "2022-08-04T08:21:16.163Z",
+    "User": "PEDRO01\\pedro",
+    "UtcTime": "2022-08-04 15:21:16.119"
+  }
+]

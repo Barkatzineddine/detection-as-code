@@ -1,0 +1,30 @@
+title: WMI Event Consumer Running a Command or Script
+id: 8cd41097-3388-45ec-b722-8484b8c70793
+status: test
+description: |
+  Detects the creation of a WMI CommandLineEventConsumer or ActiveScriptEventConsumer. Bound
+  to an event filter, it runs a command each time the filter fires (at boot, at logon, on a
+  timer), from WmiPrvSE.exe as SYSTEM. It is a file-less persistence that survives reboots
+  and is missed by tools that only inspect Run keys, services and tasks.
+references:
+  - https://learn.microsoft.com/en-us/windows/win32/wmisdk/commandlineeventconsumer
+  - https://attack.mitre.org/techniques/T1546/003/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1546.003
+logsource:
+  category: wmi_event
+  product: windows
+detection:
+  selection:
+    EventID: 20
+    Type:
+      - 'Command Line'
+      - 'Script'
+  condition: selection
+falsepositives:
+  - Some management agents (SCCM, older Dell and HP tooling) register consumers. Inventory them once and filter by consumer name and destination.
+level: high

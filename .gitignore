@@ -1,0 +1,8 @@
+.cache/
+build/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+junit.xml

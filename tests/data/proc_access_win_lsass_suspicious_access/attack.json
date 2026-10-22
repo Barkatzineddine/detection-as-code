@@ -1,0 +1,23 @@
+[
+  {
+    "@timestamp": "2020-08-07T14:32:57.589Z",
+    "CallTrace": "C:\\windows\\SYSTEM32\\ntdll.dll+9c534|C:\\windows\\System32\\KERNELBASE.dll+2726e|UNKNOWN(000002EE319439BF)",
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "EventID": 10,
+    "EventType": "INFO",
+    "GrantedAccess": "0x1010",
+    "Hostname": "WORKSTATION5.theshire.local",
+    "ProcessId": "1648",
+    "RecordNumber": 725757,
+    "RuleName": "-",
+    "SourceImage": "C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "SourceProcessGUID": "{297bc33e-65d0-5f2d-8207-000000000400}",
+    "SourceProcessId": "1648",
+    "SourceThreadId": "7324",
+    "TargetImage": "C:\\windows\\system32\\lsass.exe",
+    "TargetProcessGUID": "{297bc33e-5c2e-5f2b-0c00-000000000400}",
+    "TargetProcessId": "768",
+    "UtcTime": "2020-08-07 14:32:56.540"
+  }
+]

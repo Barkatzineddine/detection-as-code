@@ -1,0 +1,31 @@
+[
+  {
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "CommandLine": "netsh  advfirewall firewall add rule name=\"atomic testing\" action=allow dir=in protocol=TCP localport=450",
+    "Company": "Microsoft Corporation",
+    "CurrentDirectory": "C:\\Users\\wardog\\",
+    "Description": "Network Command Shell",
+    "EventID": 1,
+    "FileVersion": "10.0.18362.1 (WinBuild.160101.0800)",
+    "Hashes": "SHA1=E7A3B17F625283E3064D91A988D0B1694BA3E9B8,MD5=79CBBF946E797103BED792740AEBFEC1,SHA256=90F0822D26680C8FFD703A080C876F87695580747A3704C169E39E1A8802EA38,IMPHASH=90B4317BE51850B8EF9F14EB56FB7DDC",
+    "Hostname": "WORKSTATION5",
+    "Image": "C:\\Windows\\System32\\netsh.exe",
+    "IntegrityLevel": "High",
+    "LogonGuid": "{39e4a257-f1ac-5f8b-d961-0c0000000000}",
+    "LogonId": "0xc61d9",
+    "OriginalFileName": "netsh.exe",
+    "ParentCommandLine": "\"C:\\windows\\system32\\cmd.exe\" ",
+    "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+    "ParentProcessGuid": "{39e4a257-b6a7-5f8f-6f0c-000000000700}",
+    "ParentProcessId": "4160",
+    "ProcessGuid": "{39e4a257-b6b8-5f8f-710c-000000000700}",
+    "ProcessId": "10188",
+    "Product": "Microsoft® Windows® Operating System",
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "TerminalSessionId": "2",
+    "TimeCreated": "2020-10-21 12:19:04.414",
+    "User": "WORKSTATION5\\wardog",
+    "UtcTime": "2020-10-21 04:19:04.410"
+  }
+]

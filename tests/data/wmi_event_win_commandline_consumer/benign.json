@@ -1,0 +1,33 @@
+[
+  {
+    "@timestamp": "2020-09-04T20:43:27.459Z",
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "CommandLine": "C:\\windows\\system32\\wbem\\wmiprvse.exe -secured -Embedding",
+    "Company": "Microsoft Corporation",
+    "CurrentDirectory": "C:\\windows\\system32\\",
+    "Description": "WMI Provider Host",
+    "EventID": 1,
+    "EventType": "INFO",
+    "FileVersion": "10.0.18362.1 (WinBuild.160101.0800)",
+    "Hashes": "SHA1=51B8646308EE0B68AD1F7F1291B85395434DE49A,MD5=801E8003C257C8F540B20F1E0DECD3A6,SHA256=A75C85F3B089993E9C042FB82ECB7757E8F460ED8065FC7991CAA38A6DE0F50C,IMPHASH=CC058866636CC184AD452F88EE39368A",
+    "Hostname": "WORKSTATION5.theshire.local",
+    "Image": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+    "IntegrityLevel": "System",
+    "LogonGuid": "{860ba2e3-a43b-5f52-e503-000000000000}",
+    "LogonId": "0x3e5",
+    "OriginalFileName": "Wmiprvse.exe",
+    "ParentCommandLine": "C:\\windows\\system32\\svchost.exe -k DcomLaunch -p",
+    "ParentImage": "C:\\Windows\\System32\\svchost.exe",
+    "ParentProcessGuid": "{860ba2e3-a43b-5f52-1000-000000000500}",
+    "ParentProcessId": "912",
+    "ProcessGuid": "{860ba2e3-a6ef-5f52-5601-000000000500}",
+    "ProcessId": "5708",
+    "Product": "Microsoft® Windows® Operating System",
+    "RecordNumber": 385233,
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "TerminalSessionId": "0",
+    "User": "NT AUTHORITY\\LOCAL SERVICE",
+    "UtcTime": "2020-09-04 20:43:27.066"
+  }
+]

@@ -1,0 +1,39 @@
+title: SAM, SYSTEM or SECURITY Hive Saved With reg.exe
+id: c95da3f8-567e-4b49-8a6a-a6777b248f88
+status: test
+description: |
+  Detects reg.exe saving or exporting the SAM, SYSTEM or SECURITY registry hive. With the
+  SYSTEM hive (which holds the boot key), an offline copy of SAM gives the local account
+  hashes, and SECURITY gives LSA secrets and cached domain credentials.
+references:
+  - https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/reg-save
+  - https://attack.mitre.org/techniques/T1003/002/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.credential-access
+  - attack.t1003.002
+  - attack.t1003.004
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    - Image|endswith: '\reg.exe'
+    - OriginalFileName: 'reg.exe'
+  selection_action:
+    CommandLine|contains:
+      - ' save '
+      - ' export '
+  selection_hive:
+    CommandLine|contains:
+      - 'hklm\sam '
+      - 'hklm\system '
+      - 'hklm\security '
+      - 'hkey_local_machine\sam '
+      - 'hkey_local_machine\system '
+      - 'hkey_local_machine\security '
+  condition: all of selection_*
+falsepositives:
+  - Backup or forensic collection scripts run by administrators. They should run from a known account and host, rarely enough to be confirmed with the owner.
+level: high

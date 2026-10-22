@@ -1,0 +1,25 @@
+title: UAC Bypass Through the ms-settings Protocol Handler
+id: dec3d945-8b8a-4fe6-b2f2-d80609037cf2
+status: test
+description: |
+  Detects a value written under ms-settings\Shell\Open\command in a user's Classes hive.
+  fodhelper.exe and computerdefaults.exe auto-elevate and read this key, so whatever command
+  a standard user writes there runs at high integrity without a UAC prompt.
+references:
+  - https://github.com/hfiref0x/UACME
+  - https://attack.mitre.org/techniques/T1548/002/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.privilege-escalation
+  - attack.t1548.002
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection:
+    TargetObject|contains: '\ms-settings\Shell\Open\command\'
+  condition: selection
+falsepositives:
+  - None expected. Windows does not register a command for ms-settings in the user hive.
+level: high

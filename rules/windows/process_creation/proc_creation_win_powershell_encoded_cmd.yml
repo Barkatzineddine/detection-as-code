@@ -1,0 +1,40 @@
+title: PowerShell Started With an Encoded Command
+id: 79f831d4-3cba-4987-9132-1e1ab41e7deb
+status: test
+description: |
+  Detects powershell.exe or pwsh.exe started with -EncodedCommand or one of the abbreviations
+  PowerShell accepts for it (-e, -en, -enc, -enco..., -ec). Encoding hides the script from
+  anyone reading the command line and is the default launcher of Empire, Cobalt Strike and
+  many commodity loaders.
+references:
+  - https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_exe
+  - https://attack.mitre.org/techniques/T1059/001/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.execution
+  - attack.t1059.001
+  - attack.stealth
+  - attack.t1027.010
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    - Image|endswith:
+        - '\powershell.exe'
+        - '\pwsh.exe'
+    - OriginalFileName:
+        - 'PowerShell.EXE'
+        - 'pwsh.dll'
+  selection_flag:
+    CommandLine|windash|contains:
+      - ' -e '
+      - ' -en '
+      - ' -enc '
+      - ' -enco'
+      - ' -ec '
+  condition: all of selection_*
+falsepositives:
+  - Deployment and management tools (SCCM, Intune remediation scripts, some RMM agents) that pass scripts encoded. Baseline them by parent process, signer and host group rather than by command line.
+level: high

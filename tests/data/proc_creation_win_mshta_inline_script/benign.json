@@ -1,0 +1,33 @@
+[
+  {
+    "@timestamp": "2020-12-19T07:00:18.024Z",
+    "Channel": "Microsoft-Windows-Sysmon/Operational",
+    "CommandLine": "\"C:\\windows\\system32\\cscript.exe\" /nologo \"MonitorKnowledgeDiscovery.vbs\"",
+    "Company": "Microsoft Corporation",
+    "CurrentDirectory": "C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\Health Service State\\Monitoring Host Temporary Files 4\\60\\",
+    "Description": "Microsoft ® Console Based Script Host",
+    "EventID": 1,
+    "FileVersion": "5.812.10240.16384",
+    "Hashes": "SHA1=B6384FAFE0D30E4E897C318DB25D3CC167D9C413,MD5=B073F18D23BE85799A640147AF9ABA99,SHA256=4F059AC07F90E95BDAF0D7F0D1C54DDCDC0651A1E0D8AA5F03D11D6B0521177F,IMPHASH=2B44D2206B9865383429E9C1524F1CAC",
+    "Hostname": "WORKSTATION5.theshire.local",
+    "Image": "C:\\Windows\\System32\\cscript.exe",
+    "IntegrityLevel": "System",
+    "Level": "4",
+    "LogonGuid": "{67e11d8c-8769-5fd0-e703-000000000000}",
+    "LogonId": "0x3e7",
+    "OriginalFileName": "cscript.exe",
+    "ParentCommandLine": "\"C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\MonitoringHost.exe\" -Embedding",
+    "ParentImage": "C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\MonitoringHost.exe",
+    "ParentProcessGuid": "{67e11d8c-87ca-5fd0-a700-000000000700}",
+    "ParentProcessId": "5272",
+    "ProcessGuid": "{67e11d8c-eb52-5fdd-1d97-000000000700}",
+    "ProcessId": "8444",
+    "Product": "Microsoft ® Windows Script Host",
+    "RuleName": "-",
+    "SourceName": "Microsoft-Windows-Sysmon",
+    "TerminalSessionId": "0",
+    "TimeCreated": "2020-12-19T07:00:18.024Z",
+    "User": "NT AUTHORITY\\SYSTEM",
+    "UtcTime": "2020-12-19 12:00:18.008"
+  }
+]

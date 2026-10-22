@@ -1,0 +1,48 @@
+title: Run Key Value Launching a Script Interpreter or Payload
+id: a62f38ba-2b6f-451d-8c6e-544fa4ca242c
+status: test
+description: |
+  Detects a value written under a Run or RunOnce key whose command starts a script
+  interpreter or LOLBin, decodes Base64, downloads from a URL or runs from a user-writable
+  folder. Programs in these keys start at every logon, which makes them the most common
+  persistence location on Windows.
+references:
+  - https://learn.microsoft.com/en-us/windows/win32/setupapi/run-and-runonce-registry-keys
+  - https://attack.mitre.org/techniques/T1547/001/
+author: Mohamed Zineddine Barkat
+date: 2026-10-22
+tags:
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1547.001
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection_key:
+    TargetObject|contains:
+      - '\Software\Microsoft\Windows\CurrentVersion\Run\'
+      - '\Software\Microsoft\Windows\CurrentVersion\RunOnce\'
+      - '\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Run\'
+      - '\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\RunOnce\'
+      - '\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\'
+  selection_value:
+    Details|contains:
+      - 'powershell'
+      - 'pwsh'
+      - 'cmd.exe /c'
+      - 'cmd /c'
+      - 'mshta'
+      - 'regsvr32'
+      - 'wscript'
+      - 'cscript'
+      - 'FromBase64String'
+      - ' -enc'
+      - 'http://'
+      - 'https://'
+      - '\AppData\Local\Temp\'
+      - '\Users\Public\'
+  condition: all of selection_*
+falsepositives:
+  - Some vendor updaters register a PowerShell or cmd wrapper at logon. Review the value's full command and the writing process once, then filter on both.
+level: medium
