@@ -156,9 +156,9 @@ any where winlog.channel:"Microsoft-Windows-Sysmon/Operational" and (event.code:
 or winlog.event_data.CallTrace:"*UNKNOWN(*") and (not (...))))
 ```
 
-**6. The live check.** CI indexes the 441 sample events into OpenSearch in the document shape
-Wazuh's decoders produce, then runs the Wazuh query: it returns the Mimikatz event and nothing
-else.
+**6. The live check.** CI indexes the 441 sample events into OpenSearch 2.19 in the document
+shape Wazuh's decoders produce, then runs the Wazuh query: it returns the Mimikatz event and
+nothing else, with both the case-insensitive and the case-sensitive mapping.
 
 **7. The analyst's side.** The [playbook](playbooks/proc_access_win_lsass_suspicious_access.md)
 explains how to read `GrantedAccess` and `CallTrace`, what to look at next (dump files,
@@ -184,6 +184,14 @@ Real findings from this repository's own history:
    Anyone cloning a repository that contains them would have the same problem. The sample
    builder now reads events straight from the archives and truncates long encoded payloads,
    which no rule depends on ([details](tests/data/README.md#edits-made-to-recorded-events)).
+4. **Converted queries that silently stop matching in Wazuh.** Sigma compares strings
+   case-insensitively, but Wazuh's index template stores event fields as case-sensitive
+   keywords. Run against a live OpenSearch with that mapping, 3 of the 20 Wazuh queries miss
+   their recorded attack: `reg save HKLM\sam` does not match `hklm\sam`, `schtasks /Create`
+   does not match `/create`, and the service-install events were shipped with the channel
+   name `security` while the query asks for `Security`. With a lowercase normalizer on the index, all 20 match their attack and
+   nothing else. The CI job reports both results on every run, so the gap stays visible
+   instead of surfacing during an incident.
 
 ## Run it locally
 
@@ -249,8 +257,9 @@ credentials.
   and ES|QL carry the full correlation. In Wazuh, the native equivalent is a frequency rule
   with `same_source_ip`.
 - **Case sensitivity in Wazuh.** Sigma matches strings case-insensitively, while Wazuh's
-  index template stores them as case-sensitive keywords. CI checks the Wazuh queries both
-  ways and reports which rules depend on the case of the logged values.
+  default index template stores them as case-sensitive keywords; 3 queries depend on the case
+  of the logged values (finding 4 above). Deploy them on an index with a lowercase normalizer,
+  or as Wazuh XML rules with case-insensitive PCRE2, which this project does not generate yet.
 - **Command-line evasion.** Process-creation rules read the command line as logged. Caret
   insertion (`p^owershell`), environment-variable tricks or renamed binaries without an
   `OriginalFileName` defeat them; script-block logging (4104) is the next layer.
